@@ -12,9 +12,8 @@ namespace PolynomialArithmetic.Tests
         {
             Polynomial p1 = new Polynomial(array1);
             Polynomial p2 = new Polynomial(array2);
-            Polynomial p3 = p1 + p2;
-            Polynomial p4 = new Polynomial(expected);
-            Assert.AreEqual(p3, p4);
+            Polynomial p3 = new Polynomial(expected);
+            Assert.AreEqual(p1 + p2, p3);
         }
 
         [TestCase(new double[] { 1, 2, 3, 4 }, new double[] { 1, 2, 3, 4 }, new double[] { 0 })]
@@ -24,9 +23,8 @@ namespace PolynomialArithmetic.Tests
         {
             Polynomial p1 = new Polynomial(array1);
             Polynomial p2 = new Polynomial(array2);
-            Polynomial p3 = p1 - p2;
-            Polynomial p4 = new Polynomial(expected);
-            Assert.AreEqual(p3, p4);
+            Polynomial p3 = new Polynomial(expected);
+            Assert.AreEqual(p1 - p2, p3);
         }
 
         [TestCase(new double[] { 1, 2, 3, 4 }, new double[] { 1, 2, 3, 4 }, new double[] { 1, 4, 10, 20, 25, 24, 16 })]
@@ -36,9 +34,8 @@ namespace PolynomialArithmetic.Tests
         {
             Polynomial p1 = new Polynomial(array1);
             Polynomial p2 = new Polynomial(array2);
-            Polynomial p3 = p1 * p2;
-            Polynomial p4 = new Polynomial(expected);
-            Assert.AreEqual(p3, p4);
+            Polynomial p3 = new Polynomial(expected);
+            Assert.AreEqual(p1 * p2, p3);
         }
 
         #endregion
@@ -63,7 +60,7 @@ namespace PolynomialArithmetic.Tests
 
         [TestCase(new double[] { 1, 2, 3, 4, 0, -1, 11.2564, -0.00001 }, new double[] { 1, 2, 3, 4, 0, -1, 11.2564, -0.00001 }, ExpectedResult = false)]
         [TestCase(new double[] { 1, 2, 3, 4, 0, -1, 11.2564, -0.00001 }, null, ExpectedResult = false)]
-        public static bool Polynomial_NotEquals2(double[] array1, double[] array2)
+        public static bool Polynomial_NotEquals(double[] array1, double[] array2)
         {
             Polynomial p1 = new Polynomial(array1);
             object p2 = array2;
@@ -113,7 +110,7 @@ namespace PolynomialArithmetic.Tests
         public static void Polynomial_Count(double[] array, double x, double expected)
         {
             Polynomial p1 = new Polynomial(array);
-            Assert.AreEqual(expected, p1.Count(x), Polynomial.ACCURACY);
+            Assert.AreEqual(expected, p1.Count(x), Polynomial.epsilon);
         }
 
         [TestCase(new double[] { 1, 2, 3, 4, 0, -1, 11.2564, -0.00001 }, 1, 20.256)]
@@ -121,7 +118,7 @@ namespace PolynomialArithmetic.Tests
         public static void Polynomial_CountGorner(double[] array, double x, double expected)
         {
             Polynomial p1 = new Polynomial(array);
-            Assert.AreEqual(expected, p1.CountGorner(x), Polynomial.ACCURACY);
+            Assert.AreEqual(expected, p1.CountGorner(x), Polynomial.epsilon);
         }
         #endregion
     }

@@ -8,6 +8,22 @@ namespace PolynomialArithmetic
     public static class PolynomialExtend
     {
         /// <summary>
+        /// Gets the coefficients of the Polynomial.
+        /// </summary>
+        /// <param name="polynomial">The polynomial.</param>
+        /// <returns></returns>
+        public static double[] GetCoefficients(this Polynomial polynomial)
+        {
+            double[] arrayOfCoefficients = new double[polynomial.Degree + 1];
+            for (int i = 0; i <= polynomial.Degree; i++)
+            {
+                arrayOfCoefficients[i] = polynomial[i];
+            }
+
+            return arrayOfCoefficients;
+        }
+
+        /// <summary>
         /// Counts Polynomial in point x.
         /// </summary>
         /// <param name="polynomial">The polynomial.</param>
@@ -18,7 +34,7 @@ namespace PolynomialArithmetic
             double result = 0;
             for (int i = 0; i <= polynomial.Degree; i++)
             {
-                result += polynomial.Coefficients[i] * Math.Pow(x, i);
+                result += polynomial[i] * Math.Pow(x, i);
             }
 
             return result;
@@ -32,7 +48,7 @@ namespace PolynomialArithmetic
         /// <returns></returns>
         public static double CountGorner(this Polynomial polynomial, double x)
         {
-            return Gorner(x, polynomial.Coefficients);
+            return Gorner(x, polynomial.GetCoefficients());
         }
 
         private static double Gorner(double x, double[] a, int i = 0)
